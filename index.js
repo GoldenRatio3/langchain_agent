@@ -54,5 +54,19 @@ const agent = await createOpenAIFunctionsAgent({llm: agentModel, tools, prompt: 
 const agentExecutor = new AgentExecutor({agent, tools, verbose: true});
 
 const agentResult = await agentExecutor.invoke({input: "how can LangSmith help with testing?"});
+
+const agentResult2 = await agentExecutor.invoke({input: "what is the weather in London?"});
+
+const agentResult3 = await agentExecutor.invoke({chat_history: [
+	new HumanMessage("Can LangSmith help test my LLM applications?"),
+	new AIMessage("Yes!"),
+],
+	input: "tell me how"});
+
+
 console.log(agentResult.output);
+console.log("-------------------");
+console.log(agentResult2.output);
+console.log("-------------------");
+console.log(agentResult3.output);
 
